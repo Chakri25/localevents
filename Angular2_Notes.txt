@@ -1,0 +1,1018 @@
+=============================================================================================================================
+===========================================ANGULAR 2 ========================================================================
+=============================================================================================================================
+
+Why Angular 2?
+1. Angular 2 is 5 times faster compared to Angularjs 1
+2. Mobile Support: With Angular2 we can build a single application that works across mobile and desktop devices.
+3. Component Based Development: In Angular 2, everything is a component. Components are the building blocks of an Angular Application.
+4. You have more languages to choose::
+   ECMAScript 5
+   ECMAScript 6( also called ES 2015)
+   DART
+   PureScript
+   Elm
+Angular 2 itself, is built using TypeScript. TypeScript is great support of ECMAScript 6 standarad.
+
+what is ECMAScript?
+1. The JavaScript language standarad is officially called ECMAScript.
+2. ECMAScript 1 till ECMAScript 7 were releases over past years. Most browsers available support ECMAScript 5.
+3. The browser support for ECMAScript is still incomplete. So there is a concept called Transpilation which
+   complies ECMAScript 6 to ECMAScript 5.
+   ECMAScript 6 is officially known as ECMAScript 2015.
+4. New fetures in ECMAScript 2015 are classes, Modules, Arrow Functions etc.
+
+What is typescript?
+it is a free open source programming language developed by microsoft. It is a superset of js.
+Transpilation complies typescript to js. every variable, function parameters have data type.
+
+benefits:
+1. intellisense
+2. autocompletion
+3. code navigation
+4. advanced refractoring
+5. strong typing
+6. support es 2015(es 6)
+
+Selecting languages for Angular2-- we can select any of es5, es6, typescript and dart as languane in angular.
+ES5 is supported in the browser, it runs directly in the browser without any compilation.
+ES 2015 OR ES 6-- this give more advanced features lik classes, let and arrow.
+Typescript-- superset of javascript. It is strongly typed means every thing has a data type. It will be converted to javascript using transpilation.
+			 Syntax checking, code navigation, inline documentation, advance refractoring.
+			 angular developers uses typescript. most of the angular is documented in typescript.
+Dart-- no use of js. it is strong typed, grete ide tooling, highly testable.
+
+Setting up Angular environment:::
+2 steps required-
+1. make NPM available
+---must be available globally within the environment.
+---Node Package Manager: It is a command line utility which interacts with a repository of open-source projects.
+---Helps to install libraries, pakages and applications along with their dependencies.
+
+2. set up the Angular2 application
+-- no manual installation is required.
+-- npm can install all Angular2 libraries and dependencies
+	it executes scripts to transpile code.
+	launches application on server.
+	
+	To setup Angular2 manually:
+	- create an application directory
+	- create tsconfig file which configure TypeScript Compiler.
+	- creating the package.json file (defines required libraries and scripts)
+	- create typings.json file (specifies missing typescript type definitions)
+	- Install the libraries and typings
+	- create Host web page
+	- create main.ts file (bootstraps application with root component)
+	
+	We have some other options:
+	1. use quickstart files and download from angular.io
+	2. AngularCLI tool- 
+	3. course application strater kit- cloned when we set our project in cloud9.
+	
+	we are using the 3rd option in cloud 9--
+	first we need to clone angular from github.
+	1. we need to install gulp
+	2. we need to install all the libraries required.
+	--doubt--
+	3. you need to delete main in typings.
+	4. to see the output just click on preview button.
+
+installing app
+$ npm install -g angular2-cli
+
+creating angular2 app
+$ ng2 create <app-name>
+
+running app
+$ cd <app-folder>
+$ ng2 init
+$ ng2 serve
+
+running tests-
+$ ng2 test
+
+Lint
+$ npm run lint
+
+Dev and Production builds
+$ ng2 build --dev
+$ ng2 build --prod
+$ ng2 serve --dev
+$ ng2 serve --prod
+	
+First, index.html is called. In the index.html all styles and modules respectively are called.
+crash course
+COMPONENTS::
+COMPONENTS are templates. these templates are used to view layout, created with HTML and includes Bindings and directives.
+it also has class which is written in typescript + data(properties) and logic(methods).
+it contains metadata which has extra data for angular and it is defined with a decorator.
+
+example:
+import { Component } from 'angular2/core';
+
+@Component ({
+selector: '',
+template: '<h1>some sentence</h1>',)}
+
+export class classname(){}
+
+the class name is the component name. export keyword is used before the class to tell that the class or component
+is avalibale outside of the component like it can be imported to other components.
+
+the properties which are variables in ts are nouns in camelcase.
+a variable should be followed by ':' and then the type of that variable as typescript is strongly typed language.
+
+A class is know as component using component meta data function.
+ In angular metadata of the component is used to know how to build template and constructing views and how to interact with the application.
+ The metadata function is represented with a decorator in typescript.
+ 
+Decorator:: A function that adds metadata to a class, its members or its arguments. It is prefixed with '@'.
+Angular provides many built-in decorators.
+
+We need to set the location of the class for Angular to execute the component. For this we will use import statement.
+to import it we need to export the component. Import allows us to use exported members from external modules. It also imports from a thrid-party library, our
+own modules or from angular.
+Angular itself is a module.
+Angular is a collection of modules. We can import from---
+1. angular2/core
+2. angular2/http
+3. angular2/router
+4. angular2/animate
+
+to use a component in other component. we need to follow three steps: 1. add the selector of the component as a directive in other component's template(html).
+2. to know where the component is, we need to add the name of the class of the component in directives array property in the other component. 
+3. import the class from the component file.
+
+Bootstraping the Angular application:- bootstraping means that it can start and stop a application on its own. It will load the root component(bootstraping).
+It hosts the application. Index.html contains the main page for the application. 
+Angular applications are designed as Single Page Applications. Inside we have number of components, it will display as only one page.
+bootstrapping ( loading the root component-bootstraping and host the application- index.html)
+
+
+The selector is a directive or custom-element of html. we need to specify it in html. The main.ts file bootstraps our application. 
+Here our appcomponent will start. there is a bootstrap(AppComponent).
+this is starting point.
+
+Defining templates:- we can define a template inline using back-ticks. we can also define externally using templateurl.
+
+binding- communication between component and template.
+
+structural directives:
+*ngIf
+syntax:-
+*ngIf = "events.length"
+*ngFor::
+	*ngFor = "#e in events" (in angular2)
+	*ngFor = "let e of events" (in angular4)
+	
+to use numbers instead of collections, we need to create an array.
+this.numbers = Array(5).fill().map((x,i)=>i); // [0,1,2,3,4]
+    this.numbers = Array(5).fill(4); // [4,4,4,4,4]
+
+Binding::
+property binding- 
+	<img [src] = "event.imageurl" >
+	biding target is enclosed with square brackets and its source is in quotes.
+	<img src={{events.imgaeurl}}>
+	this is string interpolation, only source will be in {{ }}.
+event binding-
+<button (click) = "toogleImage()">
+two-way binding-
+from class to template and template to class.
+use [(ngModel)]
+
+Transforming data through pipes-
+we can transform the data through interpolationa and property binding but the data is not formatted.
+we can set formats for the data transfered using pipes.
+
+Built-in types::-
+date, number, decimal, percent, currency, json, slice.
+ex:-
+tranfering into lower case-
+-{{ event.eventcode | lowercase }}
+-<img src="" [title]='event.eventname | uppercase'>
+-{{ event.eventFee | currency | lowercase }}
+-{{ event.eventFeet | currency:'usd':true:'1.2-2' }}
+--1.2-3 means 
+----1 means minimum number of integers (left of decimal point)
+	2 means minimum number of right side digits.
+	3 means max num of right side digits.
+	and in this example we have used parametrs to pass to the pipe using ':'.
+
+
+we can also built custom pipes.
+Building a custom pipe::-
+As an example, we can create pipe which implements PipeTransform interface.
+the PipeTransform interface has method transform() which takes two parmeters.
+one is the value which needs to be filtered.
+second is the arguments we can use to filter the value.
+this transform() method returns the value after filtering it.
+
+ex:-export class EventFilterPipe implements PipeTranform{
+	transform(value: IEvent[], args: string[]): IEvent[] {}
+}
+
+we need to add a decorator to tell that is a pipe.
+@pipe({
+	name: 'eventFilter' })
+And as we know, we need to import pipe and PipeTransform from angular.
+import { pipe, PipeTransform } from '@angular/core';
+
+using custom pipes::-
+to use a pipe in templae-
+specify a pipe symbol and name the pipe, if you want to specify any filters, u can pass it as an argument.
+ex:- <tr *ngFor = 'event of events | eventFilter: list filters >
+
+to know where the pipe is, we need to specify it in the component.
+import { EventFilterPipe } from './event-filter.pipe';
+@Component ({
+		pipes: [EventFilterPipe]
+		)}
+
+Component Composition::-
+One kind of component composition is Nesting Components.
+Component A is nestable if-
+-- its template only manages a fragment of a larger view.
+-- it has a selector
+-- (optionally) it communcates with its continer.
+1. Build a Nested Component::-
+parent-child components-
+there is a component A. In that we have template and class.
+if we want to use this component in other, we will use in template of other component.
+ex:- we need to dsiplay rating as thumps icon using number.
+so we need to create a new component called thumps component.
+
+2. Use a Nested Component
+use a nested component(child component) as a directive.
+In our example, the event-list is the parent component and thumbs is the child component.
+so we need to add the selector of the thumbs component in the html of the parent component which is event-list component.
+and to know where the selector is, we need to add the directive in the component(angular 2), in angular 4 we need to add the component in app.module.ts file.
+In this, we have hardcoded the rating number as 4.
+OnChange lifecycle hook doen't effect because, it looks only if input parameters change.
+
+3. Pass Data to a Nested Component using @Input.
+property binding with input::-
+so to use a variable of parent in the child. we need to add the variable in the child component.
+ex:- ,here we want to use rating in the child.
+Input is a decorator function.
+@Input() rating: number; //syntax
+at the same time, we need to import it from angular.
+import { Input } from '@angular/core';
+
+In the parent component, we need to set the variable value in template in the directive of the child component:
+the variable is set as a parameter. left side will the variable name and right side will be the value from the component.
+//bellow is the syntax
+<thumbs [rating]="event.rating"> </thumbs>
+
+
+4. Raise an Event from a Nested Component using @Output.
+we can also send the output from the nested component to the parent component using @output.
+In nested component.ts define @output as-
+@Output() notify: EventEmitter<string> = new EventEmitter<string>();
+output takes only event property. The only way to send back the data is using event.
+the event can be created using EventEmitter object. so we have created an instance of the EventEmitter object.
+We can specify any data type like string, number, or multiple data types.
+typescript allows generics. 
+the event here is notify. when you click thumb, then event is created and onChange() method is called.
+
+In parent container, the notify event is raised and onNotify is called.
+in html, add the notify property in the child's directive
+in this example,
+<td>
+	<thumb [rating]='eventrating' (notify)='onNotify($event)'>
+	</thumb>
+</td>
+And create the method onNotify($event) in the parents component.ts file.
+
+
+Advanced component concepts::
+Interfaces and components:-
+we have strong typing in type script as every method has return type, properties are defined by some data type such as string, boolean and parametrs have type.
+some times we will not have type for ex events.
+then we will define 'any[]' type for events to have strong typing.
+
+to define custom types we will define interfaces.
+INTERFACE:
+A specification identifying a related set of properties and methods.
+A class commits to supporting the specification by implementing the interface.
+then we can use the interface as a data type.
+the interfaces are not supported by ES5 OR ES2015 but typescript does support.
+so interfaces are transpilled out and not found in javascript. So, use the intercae for development only.
+
+interface is a specification::-
+export interface IEvent {
+eventId: number;
+eventName: string;
+eventCode: string;
+eventDate: Date;
+description: string;
+rating: number;
+imageURL: string;
+calculatedDiscount( percent: number): number;
+}
+
+export is used before interface indicating that interface can be used anywhere outside.
+it has set of properties and methods.
+
+to use this interface as a data type::-
+import it into a component and use it
+
+if we want to use method from interface then create class which will be implemented from interface.
+ex:-
+export class classname implements interface-name {
+	constructor( 
+		public name: string,
+		public code: string,
+		.....
+	)
+	
+	calculateDiscount(percent: number): number {
+	return this.price ; }
+}
+
+component lifecycle::
+creates the component
+renders it
+creates and renders the children components.
+process changes when data bounds changes
+destroys it before removing it from dom.
+
+In that component lifecycle, we can tap some lifecycle hooks into lifecycle.
+1. OnInit- performs the component intialization after the intialization of data bound properties. 
+this is useful to retrieve data from the service (backend).
+2. OnChanges- performs action after change to input properties.
+3. OnDestroy- to perform any clean up before destroying component.
+
+Using a Lifecycle Hook::
+1. Implements the lifecycle hook inteface.
+ex:- export class name implements OnInit {}
+2. Import lifecycle hook interface.
+ex:- import { component, OnInit } from 'angular2/core';
+3. for evey lifecycle hook interface there is a hook method.
+name is ng combination with hook name.
+ex:- ngOnInit() : void { console.log('in oninit') }
+
+
+Services::-
+A class where we can get data from the server.
+
+used for features:-
+-Are independent from any particular component
+-provide share data or logic across components
+-encapsulate expternal interactions.
+
+How do services work?
+Build a service:
+@Injectable
+export class ServiceName{}
+service has injectable decorator it it has Injectable dependencies. its an optional.
+name of the file- event.service.ts
+the class has properties, methods which can be used any where in other components unlesss it is declared as protected or private.
+in our ex:
+import { Injectable } from 'angular2';
+@Injectable()
+export class EventService{
+	getEvents(): IEvent[]{
+		return {};
+		}}
+at present we hardcoded the data to return, next we can do with http.
+
+Register a service:
+to use the class as a service, we need to register that service in Injector. then the Injector provides
+the service instance to the components.
+to register a service:-
+	1. register a providers
+		provider is a code that can create or return a service.
+	2. provider will be define as part of the component metadata.
+	--because we register a service using provider, in a component it will be available at appropriate hirerarchy level.
+	Injectable on component and any of its children.
+In our ex:-
+it eventservice is registered in eventlist component then, Injector injects the service in eventlist and its child components.
+If we have abother component which is not in hirearchy, then we need to inject the service inside it.
+in this case, angular creates two instances of service classes one for eventList component
+and its child components, another is for eventDetail component and its children.
+Both the components need the service, so we need to register that service in the app component which is root component.
+In our ex:-
+we register a provider in app.component.ts--
+in metadata:-
+		providers: [ EventService ] -- this is an array, we can register more services.
+
+Inject a service::
+upto know, we have learned how to specify a service as an injector( registering a service)--> by adding provider into app component.
+Now we are going to learn how to use that service in a component. like how to inject a service as a dependecy.
+defining a service as dependency, so that injector will provide the instance of the service the component needed.
+to allow dependency injection, typescript uses an injectable constructor.
+In our ex:-
+export class EventListComponent {
+	private _eventService;
+	constructor(eventService: EventService){
+		_eventService = eventService;
+		}
+	ngOnInit(): void{
+		this.events = this._eventService.getEvents();
+		}
+	}
+
+	
+Observables and reactive extensions:
+observales-
+an array whose items arrive asynchronously over time.
+helps manage asynchronous data.
+proposed feature for ES2016
+use reactive extension(RxJS)
+used with Angular2 Libraries.
+
+stream contains: 5 10 15
+map(x => x+3)
+observable: 8 13 18
+
+diff btw observables and promises:-
+promises- returns a single value
+			not cancellable
+Observables- works with Multiple values over time
+				cancellable
+				supports filter, map, reduce and similar operators.
+
+Using Reactive:
+steps for setting up observables and Reactive Extensions(RxJS)
+Include the Angular2 Http script
+Register HTTP_PROVIDES
+ImPORT RxJS
+
+send an HTTP Request:
+import { Http, Response } from 'angular2/http';
+import { observable } from 'rxjs/observable';
+@Injectable()
+export class EventService{	
+	private eventUrl = "www....."; //from cloud
+	constructor(private _http: HTTP){}
+	getEvents(): observable<IEvent[]>{
+		return this._http.get(this._eventUrl).map((response: Response) => IEvent[]>response.json());
+		}
+}
+
+subscribe to an observable:
+in event-list.component.ts:
+ngOnInit(): void {
+	this.eventService.getEvents().subscribe(
+					events => this.events = events,
+					error => this.errorMessage = <any>error);}
+	
+				
+Routing:::
+Configure a route for each component.
+Define Options and actions: create some buttons or menu options for the user to navigate
+Tie a route to each option or action: for thoes options provide each action.
+Activate the route based on user action: after user clicked on button, route action is to be performed.
+Activating a route displays the component's view.
+
+In this: 
+we need to setup routing:: to add routing, angular 2 component's router.
+--- 1. Include the Angular2 router script.
+		for this add <script> tag in index.html page.
+		<script src="node_modules/angular2/bundles/router.dev.js"></script>
+		
+--- 2. Define the base element.
+--- 3. Register ROUTER_PROVIDERS.
+
+configureing routes
+tying routes to actions
+placing the views.
+passing parameters to a route.
+
+ROUTING::
+to display several pages, we need angular routers. This alows users to navigate from one page to other when button is clicked or when u provide navigation links.
+
+setting up routing::
+Everything like components and directives will be written in app.module.ts file to get started. So we will start router from regitering routers in app.mpdule.ts file.
+first we need to define a const name for example router with type Router array.
+-- const appRoutes: Router = [];
+we need to import router:
+-- import { Routes } from '@angular/router'
+here the router is set to array because we have number of pages. for each page, we need to have path which is string of app name and corresponding component which is classname.
+-- const appRoutes: Router = [ { path:'home', component: componentname }, {},....]
+we should not specify slash before the string in path. the default path starts from 
+'localhost:4200/'
+
+we need to register router, so add RouterModule in imports in app.module.ts.
+import { RouterModule } from '@angular/router'
+Now we need to pass the const which is appRoutes to RouterModule.
+imports{
+RouterModule.forRoot(appRoutes)
+}
+
+To display web pages, we need to add <router-outlet></router-outlet>
+
+In the links if we specify href='/app', then navigation works fine. But with href, the page start to reload.
+so, we need to use routerLink. 
+--<a routerLink='/appname'>name</a>
+Now, it will work without any reloading.
+
+paths-- we can specify relative paths in the app.component.html file as it sits on localhost:4200/
+So, it appends to it.
+But when u specify in other components html, it appends to the path where the page resides
+so, we need to use absolute path.
+like <a routerLink="../appname">name</a>
+
+[[[[[routerLinkctive]]]]]
+
+Navigating Programatically:::
+
+we can use button to navigate.
+<button (click)="methos()">home</button> -- in other component.html.
+in component.ts--
+import { Router } from '@angular/router';
+we need to pass private router: Router in to the constructor.
+
+constructor(private router: Router){}
+method(){ this.router.navigate(['/home']);}
+
+Fetching route parameters from url::
+example:
+
+this.route.snapshot.params['id']
+this.route.snapshot.params['name'] 
+these are done in ngOnInit(){}
+we should pass parameters to the constructor:- private route: ActivatedRoute
+
+Fetching route parameters reactively:::
+the above method does not give results as expected in some cases.
+this.route.params.subscribe(
+	(params: Params) => { this.user.id = params['id'];
+						  this.user.name = params['name'];}
+);
+Passing query parameters and fragments-
+we can add query parameters to url. These are spearated by '?' followed by query like mode=editing.
+we can have number of quiries separted by '&'.
+for ex-
+/something?mode=editing&query2....
+how can we pass params to angular router links?
+we also have '#' signs- which is used to jump some other place in ur app.
+
+To pass query parametrs-
+1st step- { path: 'users/:id/edit', component: editusercomponent} in app.module.ts.
+2nd step- we need to add routerlink, queryparams and fragments from where it should navigate, in html file.
+-- [queryParams]- It is not a directive. It is a bindable property of the router link directive.
+[queryParams] = "{alloEdit: '1'}", the left side value is a js object.
+this is the link which stays inside taag after [routerLink] directive.
+It is key/value pair. the query parameters are passed as key/value pair.
+
+so, if we add ?allowEdit=1, then corresponding component gets displayed.
+
+--in buttons: we will add a method. so in the button function, for queryparams we need to add it as object.
+eg- this touter.navigate(['services', id, 'edit'], {queryParams: {allowEdit: '1'}});
+
+3rd step- to add fragments:
+In link, inside HTML add fragment="loading"
+In button, we can pass the fragment as JS obj.
+eg: this.router.navigate(["something",...], {queryParams: {allowEdit: 1}, fragment: "loading"});
+- the query params and fragments are in one object.
+
+How to retrieve them?
+to retrieve query params and fragment,
+we need to add-
+1. private router: ActiveRoute in the construction of ts file of corresponding.
+2. In ngOnInit, we have two methods to retrieve queryPrams and fragment:
+1st method- this.route.snapshot.queryParams
+			this.route.fragment
+2nd method- this .route.queryParmas.subscribe()
+			this.route.fragment.subscribe()
+
+setting up child (nested)routes-
+if we have { path: 'users/:id/..', component: somecomponent }		
+			 { path: 'users/edit/..', component: somecomponent }
+			  { path: 'users/someother/..', component: somecomponent }
+			  the user is duplicated. ;to get rid of that we can add childreen property.
+we can rewrite as-
+{path:'users', component: 'usercomponent', 
+children: [
+	{ path: ':id///', component: 'fnsf'}
+	{ path: 'edit/..', component: 'djdfbse'}
+]}
+
+After adding this, we will get an error- cannot find primary outlet to load 'components'- this means- 
+we did not specify the component display in html.
+So, add <router-outlet> inside the html, then it takes care of displaying html.
+
+How to edit query parameters?
+we can do as-
+1st step: [queryParams] = "{alloEdit: userid === 3? '1' : '0'};
+
+Another  way to write navigation for button:
+this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling: 'preserve'});
+these are used to preserve the older parameter and if there is new parameters, they will be added.
+
+Page we don't have- when a user tries to access the page we dont have then, it cause errors 
+if we dont redirect like 404 error.
+
+1st step- create a component like page-not-found.
+write something in html file.
+
+2nd step- add path in routerconfig- appmodules
+{ path: "nothing", component: "page-not-found-component" }
+
+3rd step:
+if we want to add more and don't want to use component again you can redirect to other path.
+ex- {path: "something", redirectTo: "/nothing" }
+
+But in particular we can not use all possible values which user enters. so, there is wild-card routes to get rid.
+{ path: '**', redirectTo: '\not-found'}
+one condition-> this should be placed at last of all routes. if we did not do, the all other paths redirect to page-not-found
+not-found.
+
+pathMatch: 'full'
+every path starts with ''. if we have bellow path-
+{path: '', redirectTo: '/nothing'}
+then /, /users or /csv-> will match to it, and results everything to nothing page.
+To get rid of it, we use-
+{ path: '', redirectTo:'\nothing', pathMatch: 'full'}
+so, this makesure that you only if the full path is ''.
+
+Outsourcing the root components- In app.module.ts, router paths takes a significant place. So, we can create 
+another file for module-router.
+1st step: create file and lets name it as app-routing.module.ts
+2nd step: create class AppRoutingModule
+3rd step: Define the class as module- using decorator 
+			@NgModule({})
+			import {NgModule} from '@angular/core';
+4th step: Add const appRoutes
+5th step: import all the components and also router.
+6th: Reomve RouterModule in app.module.ts
+Now add RouterModule in NgModule decorator, inside imports. And also import it.
+imports: [ RouterModule.forRoot(appRoutes) ]
+
+Route Gaurds:
+If you want to give access to certain components only if user login, we can use route gaurds.
+To do manualy in onit oof each component, it would be cumbersome.
+
+To do that, we need to add Angular feature before component loaded.
+CanActivateGaurd-It runs before the component is loaded.
+1st: create file auth-guard.service.ts.
+export class AuthGuard implements CanActivate{
+CanActivate(route: ActivateRouteSnapshot, state: RouterStateSnapshot): observable<boolean>| promise<boolean> |
+boolean {}}
+You need to import CanActivate from '@angular/router'
+
+In this there should be method called canActivate. In which it takes two arguments:
+1. route which is object of ActivatedRouteSnapshot
+2. state which is RouterStateSnapshot
+
+Import those two from '@angular/router'
+
+
+FORMS:::
+Angular does form validations. After user enters the data into the forms, then the values are
+sent to angular service and then to server.
+Angular transforms the forms into Javascript object notation for us to easily retrieve data and also to use it.
+name will be the name in the form and the value will be the text or value entered by the user.
+
+There are two approaches in Angular forms:-
+1. Template-Driven- First you develop forms in html templates and then Angular infers the
+Form object from the DOM and makes easy to retrieve values.
+
+2. Reactive approach:- Form is created using typescript and also in html, then manually connect them.
+It gives totall control on form.
+
+TEMPLATE-DRIVEN approach--
+first create form. You no need to specify the action inside the template, as this shouls 
+not be submitted to the server. It will be handeled by the angular.
+
+second- import FormsModule from '@angular/forms'. And also in imports section, add FormsModule So then, the angular takes care of
+html to json. It automatically converts into javascript notation.[ In app.module.ts file ]
+
+You need to add NgModel for each form like input, select feilds and also with name of the control.
+Like u need to register the form-controls using name and NgModel.
+eg:-
+<input 
+	type="email"
+	id="email" 
+	name="email" 
+	NgModel
+	class="form-control"
+	>
+
+
+submiting and using form:-
+use onSubmit function in ts file. Now where we need to add ngSubmit directive in html, we need to write in form.
+this ngSubmit has only one event, so it is enclosed within parenthesis. It takes a function as a value.
+Now to access form elements, we need to place local reference in html.
+ex:- <form (ngSubmit)="onSubmit(f)" #f="ngForm" >......</form>
+
+understaning form:- there are properties of form like dirty, disabled, enabled, errors.
+dirty will set to false if we change something in the form. otherwise it is false.
+
+Anthoer method to access form values:- using with @ViewChild
+
+Parent-child component communication:(https://www.youtube.com/watch?v=zAhOWyhTF7g)
+-components share data with other components by passing data or events.
+-components can be nested.
+-child components receive data from parent as well as send data to parent
+-component communication is acheived using @Input(), @Output().
+-custom property binding - by using @Input()
+-@Input - allows flow of data from parent to child
+-import {Input} from '@angular/core' in child component;
+-invoke input(Input()) inside the class and create a property and assign type to it.
+-the properties of a component are accessible only within the component not from outside.
+-to make the properties bindable from outside, add @Input decorator infront of that property.
+-in the parent component.html, use selector of the child component and bind the property and assin it to a value in the parent component.
+
+https://www.themarketingtechnologist.co/building-nested-components-in-angular-2/
+-@Output - allows flow of data from child to parent component
+-it is possible by emiting an event by child component
+-an event is defined with an EventEmitter object hence a new instance of EventEmitter is created & decrated with @Output.
+-add a click event handler to the component and raise the notify event
+-upon firing the event, the nested comonent will dispatch event to its parent component
+
+
+-import output from '@angular/core';
+
+-
+
+
+
+Directives:Instructions given to DOM
+they are 3 types.
+Components- directives with templates.
+Attribute directives- sit on elements just like attributes.
+eg: ngClass, ngStyle
+Structural directives- destroy or recreate DOM elements based on specific condition.
+eg: *ngFor, *ngIf
+
+custom directive:
+create a directive file(directive.ts)
+-import directive from '@angular/core'.
+-export class
+-@Directive
+-add the selector of directive to declarations array of  @NgModule in app.module.ts.
+
+
+Data-binding: Communication between typescript and template.
+              to output data - string interpolation, property binding
+              to react to user events - event binding
+
+Pipes:
+ built-in feature to transform output in a template.
+ uppercase, lowercase, date.
+ parametrizing pipes- parametrizing is used to combine multiple pipes.
+
+custom pipe:
+-create a pipe(pipe.ts)
+-export class with interface PipeTransform.
+-import PipeTransform from @angular/core
+-use transform method inside the class
+-also add the pipe to declarations array of @NgModule and import it from the respective file.
+-add @Pipe decorator and also import it from @angular/core
+-in pipe decorator,give the name of pipe(name:'shorten') and use it in the template 
+
+
+
+Forms: FormsModule must be added to imports array of @NgModule in app.module.ts.
+       import {FormsModule} from @angular/forms.
+       
+
+1. Template-driven approach-
+set up form in the template and angular infers the form object from the DOM.
+With the forms module imported in app.module.ts, angular creates javascript object representation of the form.
+Register controls manually(select the input to be added as a control and add ngModel).
+To submit the form, add built-in (ngSubmit) directive to the form element.
+
+Getting access to the form created by angular - 2 ways
+a) using local reference
+use local reference to get access to the form created by angular automatically.
+assign ngForm to the local reference.
+the form obtained via ngForm is passed to onSubmit method.
+Import NgForm from @angular/forms in app.module.ts
+b) using @ViewChild
+ - import @ViewChild from @angular/core
+ -pass local reference to @ViewChild and assign the type NgForm to the variable.
+2. Reactive approach-structure of form is defined in typescrript code and HTMcode is set up i n template and both are connected manually.
+
+Form Validation:
+-angular dynamically adds some CSS classes and gives information about the state of the controls.
+-ngModel:
+  used without binding - to tell angular that input is a control
+  used with one-way binding - to give the control a default value
+  used with two-way binding - to instantly output it
+setValue and patchValue - to give some default values to the form by passing the javascript object exactly representing our form.
+
+setValue:-
+       -to set up the whole form 
+       -disadvantage is that it overwrites the already entered values
+patchValue:-
+        -to overwrite parts of the form
+
+        -it is only available on the form wrapped by ngForm itself whereas setValue isavailable on both signupForm(NgForm) and the form wrapped by NgForm.
+
+Resetting the form: .reset();
+                     it not only empties the input controls but also reset the state like valid and touch properties.
+
+source: https://coursetro.com/posts/code/20/Angular-2-Services-Tutorial---Understanding-&-Creating-Them
+
+Services and Dependency Injection
+
+service - javascript function with associated methods that can be imported into agular2 components to be able to be used. 
+It encapsulates methods like GET/PUT/POST.
+-singleton objects that return data in the form of promises/observables.
+
+@Injectable(): 
+-It makes the class as available to injector for instantiation
+
+Injector:
+-reports an error when trying to instantiate a class that is not marked as @Injectable().
+
+@Inject:
+-it lets angular know that a parameter must be injected.
+-ex: @Inject(ChatWidget).
+-it is used to inject primitives
+
+Providers:
+-resource or javascript thing used by angular that results in what we want to use.
+-services are added to providers array of @NgModule
+
+creating a service:
+ng g service name
+-create a file(name.service.ts)
+-import {Injectable} from '@angular/core'
+-add injectable decorator @Injectable()
+-export class nameService {
+         myMethod() {
+return 'Hello World!';
+  }
+}
+
+Importing service to the components:
+-import the service directly within the component(gives access to service in that component).
+-import the service to app.module.ts(gives access to all other components).
+-add the service to providers array in the Component decorator metadata.
+-include it through dependency injection in constructor argument of the component class.
+-call the method existing on the service inside ngOnInit.
+
+
+1. http://www.code-sample.com/2017/04/angular-2-ngmodel-root-export-module.html
+2. https://www.tutorialspoint.com/angular2/angular2_modules.htm
+
+MODULES:
+-used to put logical boundaries in our application.
+-separate the functionality of application rather coding everything into one application.
+-an application has one root module and each component, directive and pipe should be associated to that module.
+-it manages the dependencies in our application.
+-@NgModule decorator takes metadata object and tells angular how to compile and run.
+-@NgModule defines imports, declarations, providers and bootstrap
+- import { BrowserModule } from @angular/platform-browser
+- import { NgModule } from @angular/core
+- import { FormsModule } from @angular/forms
+- import { HttpModule } from @angular/http
+-add the above modules to imports array of @NgModule
+-import functionality from existing modules.
+-module makes it easy to use components, directives, pipes and providers inheritance.
+-add components, directives and pipes to declarations array of @NgModule.
+-also add the root component to bootstrap array of @NgModule.
+-add the services to providers array of @NgModule
+z-export the class AppModule{}
+-BrowserModule - required by default for any web based angular application
+-NgModule - to define imports, declarations and bootstraping options
+-Bootstrap array - tells angular which component to bootstrap in the application
+
+Observables(ES7 feature) and Promises:
+-to deal with asynchronous nature of application.
+
+source:
+1.https://scotch.io/tutorials/angular-2-http-requests-with-observables
+2.https://www.javascripttuts.com/introduction-to-angular-2-observables/
+
+Observables
+-an object imported from 3rd party package 'rxjs'
+-they are elements that provide us information
+-they will work only when coupled to its observer
+-to get access to it, we need to subscribe to them
+-3 types of data packages -handle data, handle error, handle completion
+-upon subscribing to observable, we can use 3 callbacks - i) to handle normal data
+                                                          ii)to handle error
+                                                          iii)to handle completion
+
+creating an observable:
+1st method: 
+
+infinitely running observable
+-observable.interval(timems);
+-drawback- emits data even the component is destroyed in the background as the subscription still exists.
+-use unsubscribe method to leave the observable.
+-implements ngOnDestroy. import from '@angular/core';
+-create a property, assign the type subscription and store subscription in that property.
+-import { Subscription } from 'rxjs/Subscription';
+-unsubscribe: access the prop inside ngOndestroy and call unsubscribe on it.
+
+-import { Observable } from 'rxjs/Observable';
+-create inside ngOnInit
+-Observable.create((observer:Observer<define what kind of data it emits>) => {});
+-observer is passed as an argument to the anonymous function created on observable.
+-import {Observer } from 'rxjs/Observer';
+-import 'rxjs/Rx';
+-observer.next(); - pushes/emits next data package
+-observer.error();
+-observer.complete();
+
+Observable operators:
+
+-allow transforming the data we receive into something and still is an observable
+-ex: map operator 
+
+uses:
+-Observables handle multiple values over time hence works well with real-time data
+-cancellable hence gives better control when working with in-flow of values from a stream
+-ex: autocomplete widget that sends a request on key stroke.
+
+-Promises are called only once and return a single value
+-not cancellable
+
+Http Requests:
+-Http requests are made by RxJs Observables.
+-
+
+
+Component constructor:(https://medium.com/front-end-hacking/angular-2-component-lifecycle-hooks-fa5a84b4b64d) 
+-every component has a constructor fuction
+-constructor of component is called before any other component lifecycle hook.
+-constructor is the best place to inject dependencies of the component 
+
+Component Life cycle Hooks:
+-when angular creates a new component, it will instantiate the new version of that component and add it to DOM
+-when a new component is instantiated, angular goes thru diff phases and give us a chance to hook into these phases by implementig some methods and execute some code.
+
+ngOnChanges:
+-executed multiple times
+-called at the beginning when a new component is created and also when a bound input property changes
+
+ngOnInit:
+-once the component is initialised
+
+ngDoCheck:
+-multiple times
+-whenever change detection runs(needs to change something in the template/triggering events etc)
+
+ngAfterContentInit:
+-after content has been projected into view
+
+ngAfterContentChecked:
+-called everytime the projected content has been checked
+
+ngAfterViewInit:
+-called after the component's view and child view has been initialized
+
+ngAfterViewChecked:
+-called everytime the view and child views have been checked
+
+ngOnDestroy:
+-called once the component is about to be destroyed
+
+
+ROUTING:(pluralsite)
+- to setup navigation throughout the application
+- determines which component to be rendered depending on the address we enter in the url bar
+- set the basepath(part of url that specifies application subfolder on the server.)
+RouterModule:
+-import { RouterModule } from '@angular/router';
+-it provides the service to manage navigation and url manipulation to configre the routes
+-directives 
+  i)RouterLink - catches a click on the element, prevents default sending a request to the server, analyzes the path and displays the correct component.
+               -routerLink is a directive added to clickable element
+  ii)RouterLinkActive - associates a style with the active router link
+                      - can be added to wrapping element or th elink itself
+  iii)RouterOutlet - defines where to display the template
+
+-import { RouterModule } from '@angular/router';
+-add it to imports array of @NgModule
+-2 methods are available on RouterModule
+  i)RouterModule.forRoot()
+
+  ii)RouterModule.forChild()
+similarities:
+-declares the router directives
+-manages route configuration
+
+differences:
+forRoot()
+-registers router service 
+-used once for the application
+
+forChild()
+-doesn't register router service
+-used in feature modules
+
+To navigate from one component to another, 
+-import RouterModule
+-RouterModule.navigate()
+configuring Routes:
+-maps specific path with specific component
+-import the components from specific files
+-order of routes in the array is important
+
+ActivatedRoute:
+-gives access to currently active route
+
+Passing parameters to Routes:
+-/:id
+
+absolute path- / at the beginning, always appended to the rot domain
+relative path- no slash, get appended to currently loaded path
+
