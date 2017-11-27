@@ -36,14 +36,14 @@
 			<tbody>
 				<tr *ngFor = "let event of events">
 					<td>
-						<img src="Book.jpg" height="20" width="20" *ngIf = "showImage">
+						<img src="./Book.jpg" height="20" width="20" *ngIf = "showImage">
 					</td>
 					<td>{{ event.name }}</td>
 					<td>{{ event.code | lowercase }}</td>
 					<td>{{ event.date }}</td>
 					<td>{{ event.fee | currency:'USD':true:'1.2-2' }}</td>
 					<!--<td>{{ event.rating }}</td>, instead of this we are adding the component (nested component)-->
-					<td> <thumbs [rating]="event.rating"> </thumbs> </td>
+					<td> <thumbs [rating]="event.rating" (ratingClicked)= "onRatingClicked($event)"> </thumbs> </td>
 				</tr>
 			</tbody>
 		</table>

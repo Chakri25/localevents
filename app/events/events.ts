@@ -8,6 +8,5 @@ export interface IEvent {
 	fee: number;
 	rating: number;
 	imageURL: string;
-	location: any[];
 	capacity: number;
 }

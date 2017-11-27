@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'thumbs',
@@ -12,8 +12,12 @@ export class ThumbComponent {
 	//to declare this as input parameter.
 	@Input() rating: number;
 	thumbWidth: number;
-
+	@Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 	ngOnChanges(): void{
 		this.thumbWidth = this.rating;
+	}
+
+	onClick(){
+		this.ratingClicked.emit('the rating '+this.rating+' was clicked');
 	}
 }

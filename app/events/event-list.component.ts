@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from './event.service';
 
 @Component({
 	selector: 'event-list',
@@ -10,6 +11,8 @@ export class EventListComponent implements OnInit{
 	showImageButton = "Hide Image";
 	showImage: boolean = true;
 	searchCriteria: string = 'beach';
+	events: any[];
+	/*
 	events: any[] = [{
 			"name": "Event-1",
 			"code": "Evt100",
@@ -68,7 +71,11 @@ export class EventListComponent implements OnInit{
 			"capacity": 100
 	}
 
-	];
+	];*/
+
+	constructor(private _eventService: EventService){
+
+	}
 
 	toggleImage(): void {
 		this.showImage = !this.showImage;
@@ -80,5 +87,11 @@ export class EventListComponent implements OnInit{
 
 	ngOnInit(): void{
 		console.log('In ngOnInit');
+		this.events = this._eventService.getEvents();
+	}
+
+	onRatingClicked(message: string): void{
+		this.pageTitle = 'Event List: '+ message;
+		console.log("clicked");
 	}
 }
